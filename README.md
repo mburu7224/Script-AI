@@ -1,28 +1,44 @@
-# Script AI
+# Script AI — Server
 
-An AI-powered screenwriting workspace. Generate full scripts, outlines, storyboards, and production breakdowns from a story idea.
+AI-powered screenwriting workspace with a secure backend proxy.
 
-## Live App
+## Deploy to Railway (free)
 
-👉 **[Open Script AI](https://YOUR-USERNAME.github.io/script-ai)**
+1. Push this repo to GitHub
+2. Go to [railway.app](https://railway.app) → New Project → Deploy from GitHub
+3. Select this repo
+4. Go to **Variables** tab → add:
+   ```
+   ANTHROPIC_API_KEY = sk-ant-api03-your-key-here
+   ```
+5. Railway auto-deploys — your app is live at the provided URL
 
-## Setup
+## Deploy to Render (free)
 
-1. Open the app
-2. Enter your [Anthropic API key](https://console.anthropic.com/settings/keys) when prompted
-3. Your key is stored only in your browser — never sent anywhere except directly to Anthropic
+1. Push this repo to GitHub
+2. Go to [render.com](https://render.com) → New → Web Service
+3. Connect your repo
+4. Set:
+   - **Build command:** `npm install`
+   - **Start command:** `npm start`
+5. Go to **Environment** → add `ANTHROPIC_API_KEY`
+6. Click Deploy
 
-## Features
+## Local Development
 
-- AI chat to develop your story idea
-- Auto-generates: Concept · Outline · Script · Storyboard · Breakdown
-- Projects saved locally in your browser
-- Upload sketch images to storyboard panels
-- Export full project as a formatted HTML file (print to PDF)
+```bash
+npm install
+ANTHROPIC_API_KEY=sk-ant-... node server.js
+# Open http://localhost:3000
+```
 
-## Deploy Your Own
+## Structure
 
-1. Fork this repo
-2. Go to **Settings → Pages**
-3. Set source to **main branch / root**
-4. Your app is live at `https://your-username.github.io/script-ai`
+```
+├── server.js          # Express proxy server
+├── package.json
+├── public/
+│   ├── index.html     # App UI
+│   ├── style.css      # Styles
+│   └── script.js      # Frontend logic
+```
